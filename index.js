@@ -23,13 +23,12 @@ import emailTemplate from "./documents/email.js";
 
 const app = express();
 dotenv.config();
-app.use(
-  cors({
-    origin: "https://vyapaar-vault.vercel.app", // Replace with your frontend origin
-  })
-);
-// Allow preflight requests for all routes
-app.options('*', cors());
+const corsOptions = {
+  origin: "https://vyapaar-vault.vercel.app",
+  optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
