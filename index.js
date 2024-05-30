@@ -28,6 +28,9 @@ app.use(
     origin: "https://vyapaar-vault.vercel.app", // Replace with your frontend origin
   })
 );
+// Allow preflight requests for all routes
+app.options('*', cors());
+
 app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
